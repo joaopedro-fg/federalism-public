@@ -1,5 +1,6 @@
 # Federalism and Public Administration
-SQL Queries:
+To extract data from Base dos Dados, the following SQL queries were used:
+
 For municipal_public_workers_rais.csv:
 ```
 SELECT id_municipio as municipality_id, ano as year, COUNTIF(tipo_vinculo IN ('35', '50','60','65','70','75','90','95','96','97')) as temporaries, COUNT(*) as total_employees, SUM(IF(tipo_vinculo IN ('35', '50','60','65','70','75','90','95','96','97'), valor_remuneracao_media, 0)) as total_wage_temporaries, SUM(IF(tipo_vinculo NOT IN ('35', '50','60','65','70','75','90','95','96','97'), valor_remuneracao_media, 0)) as total_wage_others, COUNTIF(tipo_vinculo IN ('35', '50','60','65','70','75','90','95','96','97') AND (grau_instrucao_1985_2005 IN ('7','8','9','10','11') OR grau_instrucao_apos_2005 IN ('7','8','9','10','11'))) as temporaries_high_school, COUNTIF(tipo_vinculo IN ('35', '50','60','65','70','75','90','95','96','97') AND (grau_instrucao_1985_2005 IN ('9','10','11') OR grau_instrucao_apos_2005 IN ('9','10','11'))) as temporaries_university  FROM `basedosdados.br_me_rais.microdados_vinculos` 
